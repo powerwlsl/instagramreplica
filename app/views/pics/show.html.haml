@@ -17,6 +17,9 @@
 							= link_to like_pic_path(@pic), method: :put, class: "btn btn-default" do 
 								%span.glyphicon.glyphicon-thumbs-up
 								= @pic.get_upvotes.size
+							= link_to dislike_pic_path(@pic), method: :put, class: "btn btn-default" do 
+								%span.glyphicon.glyphicon-thumbs-down
+								= @pic.get_downvotes.size
 
 							- if user_signed_in? && current_user.id == @pic.user_id
 								= link_to 'Edit', edit_pic_path, class: "btn btn-info"

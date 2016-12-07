@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :pics do 
     member do 
       put "like", to: "pics#upvote"
+      put "dislike", to: "pics#downvote"
     end
   end
 
