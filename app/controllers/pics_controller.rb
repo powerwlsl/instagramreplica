@@ -1,5 +1,6 @@
 class PicsController < ApplicationController
-  before_action :set_pic, only: [:show,:update,:destroy,:edit]
+  before_action :set_pic, only: [:show,:update,:destroy,:edit,:upvote]
+  before_action :authenticate_user!, except: [:index,:show] #if you are not logged in, and then click you will redirect to the login page
   def index
     @pics = Pic.all.order('created_at DESC')
   end
@@ -36,6 +37,12 @@ class PicsController < ApplicationController
 
   def edit
 
+  end
+
+  def upvote
+    @pic.upvote_by current_user
+    # @pic.liked_by current_user
+    redirect_to :back
   end
 
   private 
